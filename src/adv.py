@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player("", room["outside"])
+player = Player("Inaki", room["outside"])
 
 # Write a loop that:
 #
@@ -52,36 +52,58 @@ player = Player("", room["outside"])
 #
 # If the user enters "q", quit the game.
 
-while True:
+def move(direction):
+    newRoom = getattr(player.current_room, f"{direction}_to")
+    if newRoom is not None:
+        player.current_room = newRoom
+    else: 
+        print("There is no room in this direction, please choose another direction or q to end game")
+
+endCondition = False 
+
+while endCondition is not True:
+    print(
+        f"\nYou are in the room {player.current_room.name}: {player.current_room.description}")
+    direction = input(
+        "Choose the direction you want to go (n/e/s/w):").lower()
+    if direction == "q":
+        endCondition = True
+        print("\nThank you for playing, see you next time")
+    elif direction == "n" or direction == "e" or direction == "s" or direction == "w":
+        move(direction)
+    else: 
+        print("This is not a valid direction. Please choose n, e, s or w. To end game type q")
+
+
+
+
+
+
+
+
+
+
+
+""" while True:
     print(
         f"\nYou are in the room {player.current_room.name}: {player.current_room.description}")
     direction = input(
         "Choose the direction in which you want to go (n/e/s/w):").lower()
 
     def move(direction):
-        
-        
-        while not (direction == "n" or direction == "e" or direction == "s" or direction == "w"):
-            try:
-                print(player.current_room)
-                getattr(player.current_room, f"{direction}_to")
-                print("true")
-                boolean = True
-            except:
-                print("false")
-                boolean = False 
+        try:
+            newRoom = getattr(player.current_room, f"{direction}_to")
+            if newRoom is not None:
+                player.current_room = newRoom
+            else:
+                direction = input(
+                    "You cannot go there, please select another direction (n/e/s/w):").lower()
+        except: 
+            print("here")
+            direction = input("Invalid input, select n, e, s or w:").lower()
 
-            if not boolean:
-                print("there")
-                direction = input("You cannot go there, please select another direction (n/e/s/w):").lower()
-            else: 
-                player.current_room = getattr(player.current_room, f"{direction}_to")
-        else:
-            player.current_room = getattr(player.current_room, f"{direction}_to")
-            
-
-    while not (direction == "n" or direction == "e" or direction == "s" or direction == "w") :       
+    while not (direction == "n" or direction == "e" or direction == "s" or direction == "w"):
         print("here")
         direction = input("Invalid input, select n, e, s or w:").lower()
     else:
-        move(direction)
+        move(direction) """
