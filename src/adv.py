@@ -73,7 +73,7 @@ while endCondition is not True:
         printCondition= False
     else:
         direction = input(
-            "Choose the direction you want to go (n/e/s/w):").lower()
+            "Choose the direction you want to go (n/e/s/w) or press q to exit the game:").lower()
 
     if direction == "q":
         endCondition = True
