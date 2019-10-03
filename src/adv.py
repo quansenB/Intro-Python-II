@@ -52,16 +52,18 @@ player = Player("Inaki", room["outside"])
 #
 # If the user enters "q", quit the game.
 
+
 def move(direction):
     newRoom = getattr(player.current_room, f"{direction}_to")
     if newRoom is not None:
         player.current_room = newRoom
         global printCondition
-        printCondition= True
-    else: 
+        printCondition = True
+    else:
         print("There is no room in this direction, please choose another direction or q to end game")
 
-endCondition = False 
+
+endCondition = False
 printCondition = True
 
 while endCondition is not True:
@@ -70,7 +72,7 @@ while endCondition is not True:
             f"\nYou are in the room {player.current_room.name}: {player.current_room.description}")
         direction = input(
             "Choose the direction you want to go (n/e/s/w) or press q to exit the game:").lower()
-        printCondition= False
+        printCondition = False
     else:
         direction = input(
             "Choose the direction you want to go (n/e/s/w) or press q to exit the game:").lower()
@@ -80,17 +82,9 @@ while endCondition is not True:
         print("\nThank you for playing, see you next time")
     elif direction == "n" or direction == "e" or direction == "s" or direction == "w":
         move(direction)
-    else: 
-        print("This is not a valid direction. Please choose n, e, s or w. To end game type q")
-
-
-
-
-
-
-
-
-
+    else:
+        print(
+            "This is not a valid direction. Please choose n, e, s or w. To end game type q")
 
 
 """ while True:
