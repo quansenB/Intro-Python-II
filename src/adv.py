@@ -86,27 +86,3 @@ while endCondition is not True:
         print(
             "This is not a valid direction. Please choose n, e, s or w. To end game type q")
 
-
-""" while True:
-    print(
-        f"\nYou are in the room {player.current_room.name}: {player.current_room.description}")
-    direction = input(
-        "Choose the direction in which you want to go (n/e/s/w):").lower()
-
-    def move(direction):
-        try:
-            newRoom = getattr(player.current_room, f"{direction}_to")
-            if newRoom is not None:
-                player.current_room = newRoom
-            else:
-                direction = input(
-                    "You cannot go there, please select another direction (n/e/s/w):").lower()
-        except: 
-            print("here")
-            direction = input("Invalid input, select n, e, s or w:").lower()
-
-    while not (direction == "n" or direction == "e" or direction == "s" or direction == "w"):
-        print("here")
-        direction = input("Invalid input, select n, e, s or w:").lower()
-    else:
-        move(direction) """
