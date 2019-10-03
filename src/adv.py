@@ -56,16 +56,25 @@ def move(direction):
     newRoom = getattr(player.current_room, f"{direction}_to")
     if newRoom is not None:
         player.current_room = newRoom
+        global printCondition
+        printCondition= True
     else: 
         print("There is no room in this direction, please choose another direction or q to end game")
 
 endCondition = False 
+printCondition = True
 
 while endCondition is not True:
-    print(
-        f"\nYou are in the room {player.current_room.name}: {player.current_room.description}")
-    direction = input(
-        "Choose the direction you want to go (n/e/s/w):").lower()
+    if(printCondition):
+        print(
+            f"\nYou are in the room {player.current_room.name}: {player.current_room.description}")
+        direction = input(
+            "Choose the direction you want to go (n/e/s/w) or press q to exit the game:").lower()
+        printCondition= False
+    else:
+        direction = input(
+            "Choose the direction you want to go (n/e/s/w):").lower()
+
     if direction == "q":
         endCondition = True
         print("\nThank you for playing, see you next time")
