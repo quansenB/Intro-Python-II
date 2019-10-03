@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,6 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+player = Player("Inaki", room["outside"])
 
 # Write a loop that:
 #
@@ -49,3 +51,38 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+def move(direction):
+    newRoom = getattr(player.current_room, f"{direction}_to")
+    if newRoom is not None:
+        player.current_room = newRoom
+        global printCondition
+        printCondition = True
+    else:
+        print("There is no room in this direction, please choose another direction or q to end game")
+
+
+endCondition = False
+printCondition = True
+
+while endCondition is not True:
+    if(printCondition):
+        print(
+            f"\nYou are in the room {player.current_room.name}: {player.current_room.description}")
+        direction = input(
+            "Choose the direction you want to go (n/e/s/w) or press q to exit the game:").lower()
+        printCondition = False
+    else:
+        direction = input(
+            "Choose the direction you want to go (n/e/s/w) or press q to exit the game:").lower()
+
+    if direction == "q":
+        endCondition = True
+        print("\nThank you for playing, see you next time")
+    elif direction == "n" or direction == "e" or direction == "s" or direction == "w":
+        move(direction)
+    else:
+        print(
+            "This is not a valid direction. Please choose n, e, s or w. To end game type q")
+
